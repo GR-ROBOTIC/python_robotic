@@ -5,7 +5,7 @@
 #  Première utilisation :   chmod +x lancer.sh
 #  Menu interactif :        ./lancer.sh
 #  Commande directe :       ./lancer.sh installer | robot | env | entrainer
-#                                       reprendre | courbes | voir | voir-dernier
+#                                       reprendre | courbes | voir | voir-dernier | exporter
 # =============================================================
 
 ENV_CONDA="pybullet"
@@ -104,6 +104,20 @@ voir_dernier() {
     python voir_robot.py --modele "$MODELE" --stats "$STATS"
 }
 
+exporter() {
+    verifier_fichier exporter_esp32.py || return
+    if [ -f modeles/bipede_final.zip ] && [ -f modeles/vecnormalize_final.pkl ]; then
+        read -rp "Exporter le modèle final ? [O/n] : " REP
+        if [[ ! "$REP" =~ ^[nN] ]]; then python exporter_esp32.py; return; fi
+    fi
+    if derniere_sauvegarde; then
+        echo -e "Export de ${GRAS}$MODELE${FIN}"
+        python exporter_esp32.py --modele "$MODELE" --stats "$STATS"
+    else
+        echo -e "${JAUNE}Aucun modèle trouvé dans modeles/.${FIN}"
+    fi
+}
+
 # ---------- Programme principal ----------
 activer_conda
 
@@ -116,6 +130,7 @@ case "$1" in
     courbes)      courbes; exit ;;
     voir)         voir; exit ;;
     voir-dernier) voir_dernier; exit ;;
+    exporter)     exporter; exit ;;
 esac
 
 while true; do
@@ -129,6 +144,7 @@ while true; do
     echo "  6) Voir les courbes (TensorBoard)"
     echo "  7) Voir le robot entraîné (modèle final)"
     echo "  8) Voir la dernière sauvegarde intermédiaire"
+    echo "  9) Exporter le modèle vers l'ESP32"
     echo "  0) Quitter"
     read -rp "Votre choix : " CHOIX
     case "$CHOIX" in
@@ -140,6 +156,7 @@ while true; do
         6) courbes ;;
         7) voir ;;
         8) voir_dernier ;;
+        9) exporter ;;
         0) exit 0 ;;
         *) echo -e "${ROUGE}Choix invalide.${FIN}" ;;
     esac
