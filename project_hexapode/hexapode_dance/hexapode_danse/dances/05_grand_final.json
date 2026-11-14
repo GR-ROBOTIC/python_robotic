@@ -1,0 +1,20 @@
+{
+  "name": "Grand Final",
+  "bpm": 122,
+  "steps": [
+    ["menace", 8],
+    ["hula", 8, {"amp": 1.2}],
+    ["ola", 12],
+    ["twist", 8, {"amp": 1.2}],
+    ["marche_sur_place", 8],
+    ["toupie", 8],
+    ["boxe", 8],
+    ["huit", 8],
+    ["araignee_folle", 8],
+    ["crabe", 8],
+    ["coucou", 8],
+    ["pompes", 8],
+    ["grandir", 4],
+    ["revérence", 4]
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Moonwalker",
+  "bpm": 112,
+  "steps": [
+    ["avance_rebond", 8],
+    ["moonwalk", 8],
+    ["toupie", 8],
+    ["crabe", 8],
+    ["vague", 8],
+    ["cercle", 8],
+    ["shimmy", 8],
+    ["grandir", 4],
+    ["revérence", 4]
+  ]
+}

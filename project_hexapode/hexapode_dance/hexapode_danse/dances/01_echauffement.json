@@ -1,0 +1,13 @@
+{
+  "name": "Échauffement",
+  "bpm": 100,
+  "steps": [
+    ["balancement", 8],
+    ["rebond", 8],
+    ["twist", 8],
+    ["hochement", 8],
+    ["roulis", 8],
+    ["grandir", 4],
+    ["revérence", 4]
+  ]
+}

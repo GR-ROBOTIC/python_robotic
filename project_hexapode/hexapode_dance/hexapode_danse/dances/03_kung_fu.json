@@ -1,0 +1,14 @@
+{
+  "name": "Kung-fu Araignée",
+  "bpm": 126,
+  "steps": [
+    ["grandir", 4],
+    ["boxe", 8],
+    ["tambour", 8],
+    ["pompes", 8],
+    ["boxe", 8, {"amp": 1.2}],
+    ["araignee_folle", 8],
+    ["menace", 8],
+    ["revérence", 4]
+  ]
+}

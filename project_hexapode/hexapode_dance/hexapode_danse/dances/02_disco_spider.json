@@ -1,0 +1,16 @@
+{
+  "name": "Disco Spider",
+  "bpm": 118,
+  "steps": [
+    ["hula", 8],
+    ["marche_sur_place", 8],
+    ["shimmy", 8],
+    ["toupie", 8],
+    ["coucou", 8],
+    ["huit", 8],
+    ["ola", 12],
+    ["toupie", 8, {"amp": -1}],
+    ["rebond", 4, {"amp": 1.3}],
+    ["revérence", 4]
+  ]
+}

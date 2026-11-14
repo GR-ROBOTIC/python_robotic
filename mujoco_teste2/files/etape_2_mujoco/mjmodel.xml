@@ -1,0 +1,119 @@
+<mujoco model="bipede_12servos">
+  <compiler angle="radian"/>
+
+  <option timestep="0.005" integrator="implicitfast"/>
+
+  <size nkey="1"/>
+
+  <default>
+    <joint armature="0.005" damping="0.05" limited="true"/>
+    <geom conaffinity="0"/>
+    <default class="servo">
+      <geom type="box" rgba="0.15 0.15 0.15 1"/>
+    </default>
+    <default class="segment">
+      <geom type="box" rgba="0.9 0.9 0.9 1"/>
+    </default>
+    <default class="pied">
+      <geom type="box" rgba="1 0.5 0.1 1"/>
+    </default>
+    <default class="mg996r">
+      <general forcerange="-1 1" input="pos" biastype="affine" gainprm="15" biasprm="0 -15 -0.1"/>
+    </default>
+  </default>
+
+  <asset>
+    <texture type="2d" colorspace="auto" name="damier" builtin="checker" rgb1="0.85 0.85 0.85" rgb2="0.7 0.7 0.7" width="300" height="300"/>
+    <material name="sol" texture="damier" texrepeat="8 8"/>
+  </asset>
+
+  <worldbody>
+    <geom name="sol" size="5 5 0.1" type="plane" contype="0" conaffinity="1" material="sol"/>
+    <light pos="0 0 3" type="directional"/>
+    <body name="bassin" pos="0 0 0.325">
+      <joint name="libre" type="free" armature="0" damping="0"/>
+      <geom class="servo" size="0.03 0.07 0.02" mass="0.2"/>
+      <geom name="buste" size="0.035 0.075 0.07" pos="0 0 0.09" type="box" rgba="0.15 0.4 0.85 1" mass="0.45"/>
+      <geom name="tete" size="0.04" pos="0 0 0.21" rgba="0.9 0.9 0.9 1" mass="0.1"/>
+      <site name="imu" size="0.01" rgba="1 0 0 1"/>
+      <camera name="suivi" quat="0.770365 0.509992 0.211246 0.319095" pos="0.9 -0.9 0.5" mode="trackcom"/>
+      <body name="hanche1_g" pos="0 0.05 -0.02">
+        <joint name="hanche_lacet_g" range="-0.8 0.8"/>
+        <geom class="servo" size="0.02 0.02 0.015" pos="0 0 -0.015" mass="0.06"/>
+        <body name="hanche2_g" pos="0 0 -0.03">
+          <joint name="hanche_roulis_g" range="-0.3 0.6" axis="1 0 0"/>
+          <geom class="servo" size="0.02 0.02 0.015" pos="0 0 -0.015" mass="0.06"/>
+          <body name="cuisse_g" pos="0 0 -0.03">
+            <joint name="hanche_tangage_g" range="-1.57 0.8" axis="0 1 0"/>
+            <geom class="segment" size="0.0175 0.0225 0.05" pos="0 0 -0.05" mass="0.12"/>
+            <body name="tibia_g" pos="0 0 -0.1">
+              <joint name="genou_g" range="0 2" axis="0 1 0"/>
+              <geom class="segment" size="0.0175 0.0225 0.05" pos="0 0 -0.05" mass="0.12"/>
+              <body name="cheville_g" pos="0 0 -0.1">
+                <joint name="cheville_tangage_g" range="-1 1" axis="0 1 0"/>
+                <geom class="servo" size="0.02 0.02 0.01" pos="0 0 -0.01" mass="0.06"/>
+                <body name="pied_g" pos="0 0 -0.02">
+                  <joint name="cheville_roulis_g" range="-0.5 0.5" axis="1 0 0"/>
+                  <geom name="semelle_g" class="pied" size="0.06 0.035 0.005" pos="0.015 0 -0.025" mass="0.08"/>
+                  <site name="capteur_pied_g" size="0.062 0.037 0.008" pos="0.015 0 -0.025" type="box" rgba="0 0 0 0"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="hanche1_d" pos="0 -0.05 -0.02">
+        <joint name="hanche_lacet_d" range="-0.8 0.8"/>
+        <geom class="servo" size="0.02 0.02 0.015" pos="0 0 -0.015" mass="0.06"/>
+        <body name="hanche2_d" pos="0 0 -0.03">
+          <joint name="hanche_roulis_d" range="-0.6 0.3" axis="1 0 0"/>
+          <geom class="servo" size="0.02 0.02 0.015" pos="0 0 -0.015" mass="0.06"/>
+          <body name="cuisse_d" pos="0 0 -0.03">
+            <joint name="hanche_tangage_d" range="-1.57 0.8" axis="0 1 0"/>
+            <geom class="segment" size="0.0175 0.0225 0.05" pos="0 0 -0.05" mass="0.12"/>
+            <body name="tibia_d" pos="0 0 -0.1">
+              <joint name="genou_d" range="0 2" axis="0 1 0"/>
+              <geom class="segment" size="0.0175 0.0225 0.05" pos="0 0 -0.05" mass="0.12"/>
+              <body name="cheville_d" pos="0 0 -0.1">
+                <joint name="cheville_tangage_d" range="-1 1" axis="0 1 0"/>
+                <geom class="servo" size="0.02 0.02 0.01" pos="0 0 -0.01" mass="0.06"/>
+                <body name="pied_d" pos="0 0 -0.02">
+                  <joint name="cheville_roulis_d" range="-0.5 0.5" axis="1 0 0"/>
+                  <geom name="semelle_d" class="pied" size="0.06 0.035 0.005" pos="0.015 0 -0.025" mass="0.08"/>
+                  <site name="capteur_pied_d" size="0.062 0.037 0.008" pos="0.015 0 -0.025" type="box" rgba="0 0 0 0"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <general name="servo_hanche_lacet_g" class="mg996r" joint="hanche_lacet_g" ctrlrange="-0.8 0.8"/>
+    <general name="servo_hanche_roulis_g" class="mg996r" joint="hanche_roulis_g" ctrlrange="-0.3 0.6"/>
+    <general name="servo_hanche_tangage_g" class="mg996r" joint="hanche_tangage_g" ctrlrange="-1.57 0.8"/>
+    <general name="servo_genou_g" class="mg996r" joint="genou_g" ctrlrange="0 2"/>
+    <general name="servo_cheville_tangage_g" class="mg996r" joint="cheville_tangage_g" ctrlrange="-1 1"/>
+    <general name="servo_cheville_roulis_g" class="mg996r" joint="cheville_roulis_g" ctrlrange="-0.5 0.5"/>
+    <general name="servo_hanche_lacet_d" class="mg996r" joint="hanche_lacet_d" ctrlrange="-0.8 0.8"/>
+    <general name="servo_hanche_roulis_d" class="mg996r" joint="hanche_roulis_d" ctrlrange="-0.6 0.3"/>
+    <general name="servo_hanche_tangage_d" class="mg996r" joint="hanche_tangage_d" ctrlrange="-1.57 0.8"/>
+    <general name="servo_genou_d" class="mg996r" joint="genou_d" ctrlrange="0 2"/>
+    <general name="servo_cheville_tangage_d" class="mg996r" joint="cheville_tangage_d" ctrlrange="-1 1"/>
+    <general name="servo_cheville_roulis_d" class="mg996r" joint="cheville_roulis_d" ctrlrange="-0.5 0.5"/>
+  </actuator>
+
+  <sensor>
+    <accelerometer site="imu" name="accelero"/>
+    <gyro site="imu" name="gyro"/>
+    <framequat objtype="site" objname="imu" name="orientation"/>
+    <touch site="capteur_pied_g" name="contact_pied_g"/>
+    <touch site="capteur_pied_d" name="contact_pied_d"/>
+  </sensor>
+
+  <keyframe>
+    <key name="repos" qpos="0 0 0.322 1 0 0 0 0 0 -0.3 0.6 -0.3 0 0 0 -0.3 0.6 -0.3 0" ctrl="0 0 -0.3 0.6 -0.3 0 0 0 -0.3 0.6 -0.3 0"/>
+  </keyframe>
+</mujoco>

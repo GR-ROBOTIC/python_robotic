@@ -1,0 +1,10 @@
+{
+  "name": "Ma danse",
+  "bpm": 110,
+  "steps": [
+    ["balancement", 8],
+    ["rebond", 4, {"amp": 1.2}],
+    ["coucou", 8],
+    ["revérence", 4]
+  ]
+}
