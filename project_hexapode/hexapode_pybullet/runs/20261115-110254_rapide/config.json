@@ -1,0 +1,16 @@
+{
+  "steps": 300000,
+  "envs": 8,
+  "name": "rapide",
+  "resume": null,
+  "gui": false,
+  "episode_steps": 600,
+  "lr": 0.0003,
+  "seed": 0,
+  "save_every": 50000,
+  "run": "20261115-110254_rapide",
+  "started": "2026-11-15 11:02:55",
+  "total_timesteps_before": 0,
+  "total_timesteps": 73792,
+  "duration_min": 2.5
+}
